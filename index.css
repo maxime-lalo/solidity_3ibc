@@ -1,0 +1,105 @@
+body {
+    background-color: #F0F0F0;
+    padding: 2em;
+    font-family: ‘Raleway’, ’Source Sans Pro’, ‘Arial’;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 10px;
+    width: 50%;
+    margin-bottom: 1em;
+}
+
+button {
+    margin: 2em 0;
+    padding: 1em 4em;
+    display: block;
+}
+
+#instructor {
+    padding: 1em;
+    background-color: #fff;
+    margin: 1em 0;
+}
+
+.number{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 2px;
+    padding-left: 2px;
+    border-right: 1px solid white;
+
+    text-align: center;
+    color : white;
+    font-weight:bold;
+}
+
+.no-right{
+    border-right: 0px solid black;
+}
+
+.first-line{
+    border-top : 5px solid black;
+    border-right : 5px solid black;
+    border-left : 5px solid black;
+    border-bottom: 1px solid white;
+}
+
+.middle-line{
+    border-right : 5px solid green;
+    border-left : 5px solid black;
+    border-bottom: 1px solid white;
+}
+
+.last-line{
+    border-bottom : 5px solid black;
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+}
+
+.full-line{
+    border: 5px solid black;
+}
+
+.selected{
+    color: black !important;
+    background-color: yellow !important;
+}
+
+.red{
+    background-color: red;
+}
+
+.black{
+    background-color: black;
+}
+
+.green{
+    background-color: green;
+}
+
+.first-line-right{
+    border-top: 5px solid black;
+    border-right: 5px solid black;
+}
+
+.middle-line-right{
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-right: 5px solid black;
+}
+
+.last-line-right{
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+}

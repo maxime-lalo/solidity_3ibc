@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RoulettESGI</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+      <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://kit.fontawesome.com/8c58d132fd.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 text-center">
+				<h1>RoulettESGI</h1>
+			</div>
+		</div>
+		<div class="row justify-content-center mt-2">
+			<div class="col-4">
+				<div class="input-group mb-3">
+				  <input class="form-control" type="number" name="stake" id="stake" step="0.01" max="2.00" min="0.01" onkeyup="checkStake()" onchange="checkStake()" placeholder="Ma mise">
+				  <div class="input-group-append">
+				    <span class="input-group-text">
+				    	&nbsp;
+				    	<i class="fab fa-ethereum"></i>
+				    	&nbsp;
+				    </span>
+				  </div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="row justify-content-center mt-2">
+			<div class="col-2"><i class="fas fa-chart-line"></i> Côte de la mise : <span id="cote"></span></div>
+		</div>	
+
+		<div class="row">
+			<div class="col-11">
+				<div class="row mt-3 first-line">
+					<div class="col-4 number green" onclick="sendInput(this)">1-12</div>	
+					<div class="col-4 number green" onclick="sendInput(this)">13-24</div>	
+					<div class="col-4 number green no-right" onclick="sendInput(this)">25-36</div>	
+				</div>
+
+				<div class="row middle-line">
+					<div class="col-1 number red" onclick="sendInput(this)">3</div>
+					<div class="col-1 number black" onclick="sendInput(this)">6</div>
+					<div class="col-1 number red" onclick="sendInput(this)">9</div>
+					<div class="col-1 number red" onclick="sendInput(this)">12</div>
+					<div class="col-1 number black" onclick="sendInput(this)">15</div>
+					<div class="col-1 number red" onclick="sendInput(this)">18</div>
+					<div class="col-1 number red" onclick="sendInput(this)">21</div>
+					<div class="col-1 number black" onclick="sendInput(this)">24</div>
+					<div class="col-1 number red" onclick="sendInput(this)">27</div>
+					<div class="col-1 number red" onclick="sendInput(this)">30</div>
+					<div class="col-1 number black" onclick="sendInput(this)">33</div>
+					<div class="col-1 number red no-right" onclick="sendInput(this)">36</div>
+				</div>
+
+				<div class="row middle-line">
+					<div class="col-1 number black" onclick="sendInput(this)">2</div>
+					<div class="col-1 number red" onclick="sendInput(this)">5</div>
+					<div class="col-1 number black" onclick="sendInput(this)">8</div>
+					<div class="col-1 number black" onclick="sendInput(this)">11</div>
+					<div class="col-1 number red" onclick="sendInput(this)">14</div>
+					<div class="col-1 number black" onclick="sendInput(this)">17</div>
+					<div class="col-1 number black" onclick="sendInput(this)">20</div>
+					<div class="col-1 number red" onclick="sendInput(this)">23</div>
+					<div class="col-1 number black" onclick="sendInput(this)">26</div>
+					<div class="col-1 number black" onclick="sendInput(this)">29</div>
+					<div class="col-1 number red" onclick="sendInput(this)">32</div>
+					<div class="col-1 number black no-right" onclick="sendInput(this)">35</div>
+				</div>
+
+				<div class="row middle-line">
+					<div class="col-1 number red" onclick="sendInput(this)">1</div>
+					<div class="col-1 number black" onclick="sendInput(this)">4</div>
+					<div class="col-1 number red" onclick="sendInput(this)">7</div>
+					<div class="col-1 number black" onclick="sendInput(this)">10</div>
+					<div class="col-1 number black" onclick="sendInput(this)">13</div>
+					<div class="col-1 number red" onclick="sendInput(this)">16</div>
+					<div class="col-1 number red" onclick="sendInput(this)">19</div>
+					<div class="col-1 number black" onclick="sendInput(this)">22</div>
+					<div class="col-1 number black" onclick="sendInput(this)">25</div>
+					<div class="col-1 number black" onclick="sendInput(this)">28</div>
+					<div class="col-1 number black" onclick="sendInput(this)">31</div>
+					<div class="col-1 number red no-right" onclick="sendInput(this)">34</div>
+				</div>
+
+				<div class="row last-line">
+					<div class="col-12 number green no-right" onclick="sendInput(this)">0</div>
+				</div>
+
+				<div class="row mt-4 full-line">
+					<div class="col-2 number green" onclick="sendInput(this)">1-18</div>
+					<div class="col-2 number green" onclick="sendInput(this)">Pair</div>
+					<div class="col-2 number red" onclick="sendInput(this)">Rouge</div>
+					<div class="col-2 number black" onclick="sendInput(this)">Noir</div>
+					<div class="col-2 number green" onclick="sendInput(this)">Impair</div>
+					<div class="col-2 number green no-right" onclick="sendInput(this)">19-36</div>
+				</div>
+			</div>
+			<div class="col-1">
+				<div class="row mt-3 line-selector">
+					<div class="col-12 number nothing">&nbsp;</div>	
+				</div>
+
+				<div class="row first-line-right">
+					<div class="col-12 number green no-right" onclick="sendInput(this)">Ligne 1</div>
+				</div>
+				<div class="row middle-line-right">
+					<div class="col-12 number green no-right" onclick="sendInput(this)">Ligne 2</div>
+				</div>
+				<div class="row last-line-right">
+					<div class="col-12 number green no-right" onclick="sendInput(this)">Ligne 3</div>
+				</div>
+				<div class="row line-selector">
+					<div class="col-12 number nothing">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row mt-4 justify-content-center">
+			<div class="col-2">
+				<button class="btn btn-danger" id="launchRouletteBtn" disabled onclick="launchRoulette()">
+					Lancer la roulette&nbsp;
+					<i class="fas fa-play-circle"></i>
+				</button>
+			</div>
+		</div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script>
+    	/*web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+		web3.eth.defaultAccount = web3.eth.accounts[0];
+		const contract_address = '';
+		const abi = [];
+		var CasinoContract = web3.eth.contract(abi);
+		var Casino = CasinoContract.at(contract_address);*/
+
+		function sendInput(div){
+			$('.selected').removeClass("selected");
+			$(div).addClass("selected");
+
+			if ($("#stake").val() != "") {
+				$('#launchRouletteBtn').removeAttr('disabled');
+				$('#launchRouletteBtn').addClass('btn-primary');
+				$('#launchRouletteBtn').removeClass('btn-danger');
+			}
+
+			var val = $(div).html();
+
+			if (val.includes('-')) {
+				if (val == "1-12" || val == "13-24" || val == "25-36") {
+					$('#cote').html("3");
+				}else{
+					$('#cote').html("2");
+				}
+			}else{
+				if (val.includes('Ligne')) {
+					$('#cote').html("3");
+				}else{
+					var selectedVal = parseInt($(div).html());
+					if (selectedVal >= 0) {
+						$('#cote').html("36");
+					}else{
+						$('#cote').html("2");
+					}
+				}
+			}
+		}
+
+		function checkStake(){
+			if ($('#stake').val() > 2) {
+				$('#stake').val("2.00");
+			}else{
+				if ($('#stake').val() <= 0) {
+					$('#stake').val("0.01");
+				}
+			}
+			if ($('#stake').val() != "") {
+				$('#launchRouletteBtn').removeAttr('disabled');
+				$('#launchRouletteBtn').addClass('btn-primary');
+				$('#launchRouletteBtn').removeClass('btn-danger');
+			}else{
+				$('#launchRouletteBtn').attr('disabled','disabled');
+				$('#launchRouletteBtn').addClass('btn-danger');
+				$('#launchRouletteBtn').removeClass('btn-primary');
+			}
+		}
+
+		function launchRoulette(){
+			var selected = $('.selected').html();
+			//Casino.roll(selected,$('#stake').val());
+
+			var txt = 
+				"Vous aviez sélectionné " +
+				"<strong>" + 
+					selected +
+				"</strong>" + 
+				"<br>" +
+				"Votre mise était de " + 
+				"<strong>" + 
+					$('#stake').val() + " ETH" + 
+				"</strong>"
+			;
+			Swal.fire({
+				title: "Lancer de roulette",
+				html: txt,
+				icon: "success"
+			});
+
+			$('#cote').html("");
+			$("#stake").val("");
+			$('.selected').removeClass('selected');
+			$('#launchRouletteBtn').attr('disabled','disabled');
+			$('#launchRouletteBtn').removeClass('btn-primary');
+			$('#launchRouletteBtn').addClass('btn-danger');
+		}
+
+		function get() {
+			Courses.getInstructor( function(error, result) {
+				if (!error) {
+					$("#instructor").html(result[0] + ' (' + result[1] + ' years old)');
+					console.log(result);
+				} else {
+					console.error(error);
+				}
+			});
+		}
+    </script>
+</body>
+
+</html>
